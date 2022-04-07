@@ -1,0 +1,28 @@
+{
+  "locale": [
+    "en"
+  ],
+  "service": "FINANCE",
+  "whiteListedDomains": [],
+  "modules": {
+    "widgets": [
+      {
+        "location": "invoice.details.button",
+        "name": "Bitly Invoice Link",
+        "url": "/app/widget.html",
+        "widget_type":"modal"
+      }
+    ]
+  },
+  "config": [],
+  "usedConnections": [
+    {
+      "connectionLinkName":"zohobooksbitly",
+      "connectionName":"zohobooksbitly"
+
+    },{
+      "connectionLinkName":"zbbitly",
+      "connectionName":"zbbitly"
+    }
+  ]
+}

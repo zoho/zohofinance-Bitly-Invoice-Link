@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Shorten Link with Bitly</title>
+		<!-- CSS Link -->
+		<link rel="stylesheet" href="./css/main.css">
+		<!-- Font awsome Link-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	</head>
+
+	<body>
+
+<!-- Generate Module for date click-->
+
+		<div id="blocker" class="d-none faded">
+			<h4>Bitly Invoice Link</h4>
+			<!-- <h3>Bitly Invoice Link</h3> -->
+			<div id="popup"></div>
+			<hr class="line"></hr>
+			<p >Generate short links of your Invoice URL by Bitly and share with your customers and they can view, print or download it.</p>			
+			<div id="generator">
+				<div>
+					<div id="lable">
+						<label >Link Expiration Date</label><span id="star">*</span>
+					</div>
+					<div>
+					<input id="expiry"  type="date"  class="num-field" placeholder="Select Date" >
+					<!-- <button id="generate" class="button" ><span class="round"><span class="tooltiptext tooltip-top">Invoice would not been sent </span></span>&nbsp;Generate Link</button> -->
+					</div>
+					<img src="./assets/Info.svg" id="infosvg" >&nbsp;&nbsp;<span id="info" >By default, the link is set to expire 90 days from today.</span>
+					<br><br>
+				</div>
+				<hr class="line" ></hr>
+				<button id="generate" class="button" ><span class="round"><span class="tooltiptext tooltip-top">Invoice would not been sent </span></span>&nbsp;Generate Link</button>
+			</div>
+			
+		</div>
+
+
+<!-- Link appear module  -->
+
+		<div id="Link">
+			<div>
+				<button class="circle"><img src="./assets/Share_Link.svg" id="share_Linksvg"></button>
+				<span class="sharablelink" > Sharable Link </span>
+				<button  class="button regenerate" id="regenerate" >Regenerate Link <img src="./assets/Regenerate.svg" id="regeneratesvg"></button>
+			</div>
+
+			<div >
+				<dialog open id="dialog"><img src="./assets/importantnote.svg" id="importantnotesvg">&nbsp;&nbsp;Regenerating would make current link removed and replace with new link, Recipients must be added newly if it's to be shared.<br>
+					<button id="dialog-confirm"class="button">Confirm</button>
+					<button id="dialog-close" class="button">Cancel</button>
+				</dialog>
+			</div>
+
+			<div id="bitly">
+				<div id="content">
+					<span id="bitly-link"></span>
+					<button id="copy" class="button"><i class="fa fa-clone" id="copyfont">&nbsp;</i>Copy</button>
+				</div>	
+			</div>
+		</div>
+
+<!-- Script for zfapps and extension-->
+
+		<script src="https://js.zohostatic.com/zohofinance/v1/zf_sdk.js"></script> 
+		<script src="./js/extension.js" charset="utf-8"></script>
+
+	</body>
+</html>
