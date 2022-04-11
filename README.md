@@ -1,4 +1,4 @@
-# zohofinance-Bitly-Invoice-Link
+# Bitly-Invoice-Link
 
 ## Description
 
@@ -14,19 +14,17 @@
 
 
 
-## Prerequest
+## Prerequesties:
 
-<p>Custom Field and Conections(zohoBooks & Bitly) are the prerquest to run the plugin in development mode.</p>
-<p>ZohoBooks connection Scopes:</p>
-
- ````
-       ZohoBooks.invoices.UPDATE
-       ZohoBooks.settings.All      
- ````
+In this repository , we have a source code of widgets only.
+This widget uses the custom fields and connections.
+To make this widget work in Development mode, you need to create custom field and connections.
+1. Create a url type custom field in invoice module and paste the field API name [here](https://github.com/zoho/zohofinance-Bitly-Invoice-Link/blob/be8ccca587de9fc64fbdeaad52dfb0b10af546cf/app/js/extension.js#L14)
+2. Create a connections for books and bitly services as like mentioned in [plugin-manifest.json](https://github.com/zoho/zohofinance-Bitly-Invoice-Link/blob/be8ccca587de9fc64fbdeaad52dfb0b10af546cf/plugin-manifest.json#L18).   
               
-## Deployment Process
-* Clone Repository 
-* npm install (it will install the nodeModule to run the server)
-* After installation use the command zet run (Its will run your app in https://localhost:5000)
-* Enable Development Mode in zohoBooks
-* use this pulgin (Bitly-Invoice-Link) in invoice.details.button
+## Development Process of Bitly Invoice Link Widget:
+* Clone Repository
+* Run `npm install` 
+* Run `zet run` (To run your application in https://localhost:5000)
+* Bitly-Invoice-Link
+
