@@ -16,13 +16,27 @@
   },
   "config": [],
   "usedConnections": [
-    {
-      "connectionLinkName":"zohobooksbitly",
-      "connectionName":"zohobooksbitly"
-
-    },{
-      "connectionLinkName":"zbbitly",
-      "connectionName":"zbbitly"
+    
+      {
+        "connectionLinkName": "zohobooksbitly",
+        "connectionName": "zohobooksbitly",
+        "serviceName": "zoho_books",
+        "userAccess": true,
+        "isUserDefinedService": false,
+        "sharedBy": 775288792,
+        "scope": [
+          "ZohoBooks.invoices.UPDATE",
+          "ZohoBooks.settings.All"
+        ]
+      },{
+      
+        "connectionLinkName": "zbbitly",
+        "connectionName": "zbbitly",
+        "serviceName": "bitly",
+        "userAccess": true,
+        "isUserDefinedService": false,
+        "sharedBy": 775288792
+      
     }
   ]
 }
