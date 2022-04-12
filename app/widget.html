@@ -6,9 +6,6 @@
 		<title>Shorten Link with Bitly</title>
 		<!-- CSS Link -->
 		<link rel="stylesheet" href="./css/main.css">
-		<!-- Font awsome Link-->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 	</head>
 
 	<body>
@@ -16,33 +13,32 @@
 <!-- Generate Module for date click-->
 
 		<div id="blocker" class="d-none faded">
+			<button id="closebutton" ><img src="./assets/close.svg" id="closesvg"></button>
 			<h4>Bitly Invoice Link</h4>
-			<!-- <h3>Bitly Invoice Link</h3> -->
+			<hr class="line" id="startline"> </hr>
 			<div id="popup"></div>
-			<hr class="line"></hr>
 			<p >Generate short links of your Invoice URL by Bitly and share with your customers and they can view, print or download it.</p>			
 			<div id="generator">
 				<div>
 					<div id="lable">
-						<label >Link Expiration Date</label><span id="star">*</span>
+						<label id="heading" >Link Expiration Date</label><span id="star">*</span>
 					</div>
 					<div>
-					<input id="expiry"  type="date"  class="num-field" placeholder="Select Date" >
-					<!-- <button id="generate" class="button" ><span class="round"><span class="tooltiptext tooltip-top">Invoice would not been sent </span></span>&nbsp;Generate Link</button> -->
+						<input id="expiry"  type="date"  class="num-field" placeholder="Select Date" >
 					</div>
 					<img src="./assets/Info.svg" id="infosvg" >&nbsp;&nbsp;<span id="info" >By default, the link is set to expire 90 days from today.</span>
 					<br><br>
 				</div>
-				<hr class="line" ></hr>
-				<button id="generate" class="button" ><span class="round"><span class="tooltiptext tooltip-top">Invoice would not been sent </span></span>&nbsp;Generate Link</button>
+				<hr class="line" id="line"></hr>
+				<button id="generate" class="button" ><span class="round"></span>&nbsp;Generate Link</button>
 			</div>
 			
 		</div>
 
 
 <!-- Link appear module  -->
-
 		<div id="Link">
+			<hr class="linkline"></hr>
 			<div>
 				<button class="circle"><img src="./assets/Share_Link.svg" id="share_Linksvg"></button>
 				<span class="sharablelink" > Sharable Link </span>
@@ -50,16 +46,16 @@
 			</div>
 
 			<div >
-				<dialog open id="dialog"><img src="./assets/importantnote.svg" id="importantnotesvg">&nbsp;&nbsp;Regenerating would make current link removed and replace with new link, Recipients must be added newly if it's to be shared.<br>
+				<dialog open id="dialog"><span id="dialogtxt"><img src="./assets/importantnote.svg" id="importantnotesvg">&nbsp;&nbsp;When you regenerate the link, the current link will be replaced with new link. <br>
 					<button id="dialog-confirm"class="button">Confirm</button>
-					<button id="dialog-close" class="button">Cancel</button>
+					<button id="dialog-close" class="button">Cancel</button></span>
 				</dialog>
 			</div>
 
 			<div id="bitly">
 				<div id="content">
 					<span id="bitly-link"></span>
-					<button id="copy" class="button"><i class="fa fa-clone" id="copyfont">&nbsp;</i>Copy</button>
+					<button id="copy" class="button"><img src="./assets/copy.svg"id="copyfont">&nbsp;</i>Copy</button>
 				</div>	
 			</div>
 		</div>

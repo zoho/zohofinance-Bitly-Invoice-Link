@@ -1,6 +1,6 @@
 window.onload=function(){
     ZFAPPS.extension.init().then( async() => {
-        ZFAPPS.invoke('RESIZE', { width: '526px', height: '310px' });
+        ZFAPPS.invoke('RESIZE', { width: '526px', height: '318px' });
 
         // Data
 
@@ -33,6 +33,8 @@ window.onload=function(){
         const shortlink=document.querySelector('#bitly-link');
         const round=document.querySelector('.round');
         const copy=document.querySelector('#copy');
+        const line=document.querySelector('#line');
+        const closebutton=document.querySelector('#closebutton');
 
          // Getting the bitlyLink CustomField value
         
@@ -40,14 +42,15 @@ window.onload=function(){
         var targetCF = customFields.find((field) => field.placeholder === fieldName);
         var bitlyLink = targetCF?.value;
 
-        if(invoice_status=='sent'|| invoice_status=='overdue' || invoice_status=='paid'){
-            generate.classList.remove('function');
-        }
-        else{
-            generate.classList.add('function');
-        }
-        //generate Button
 
+
+        closebutton.addEventListener('click',()=>{
+            ZFAPPS.closeModal();
+        })
+
+        //generate Button
+        
+                
         generate.addEventListener('click',()=>{
             if(invoice_status=='sent'|| invoice_status=='overdue' || invoice_status=='paid'){
                 mainfunct();
@@ -55,13 +58,20 @@ window.onload=function(){
             }
             else{
                 generate.classList.add('function');
+                let msg=''
+                msg +='<div id="warning">&nbsp;<span class="jsHTML"><img src="./assets/importantnote.svg" class="jsimport">&nbsp;You can generate an invoice link only if it is already sent or is marked as sent.</span></div>'
+                popup.innerHTML=msg;
+                round.classList.remove('active');
+                ZFAPPS.invoke('RESIZE', { width: '535px', height: '370px' });
+               
+                
             }
             });
 
         //Regenerate Button 
 
         regenerate.addEventListener('click',()=>{
-            ZFAPPS.invoke('RESIZE', { width: '550px', height: '450px' });
+            ZFAPPS.invoke('RESIZE', { width: '526px', height: '438px' });
             dialog.classList.add('active');
             bitly.classList.add('active');
             round.classList.remove('active');
@@ -75,8 +85,9 @@ window.onload=function(){
             dialog.classList.remove('active');
             bitly.classList.remove('active');
             generate.classList.remove('active');
+            line.classList.remove('active');
             expiry.classList.remove('active'); 
-            ZFAPPS.invoke('RESIZE', { width: '526px', height: '310px' });
+            ZFAPPS.invoke('RESIZE', { width: '526px', height: '318px' });
         });
 
         //dialog-close Button
@@ -122,12 +133,14 @@ window.onload=function(){
                 
             if(bitlyLink){
                
-                ZFAPPS.invoke('RESIZE', { width: '526px', height: '375px' });
+                ZFAPPS.invoke('RESIZE', { width: '526px', height: '378px' });
                 Link.classList.add('active');
                 generate.classList.add('active');
+                line.classList.add('active');
                 ZFAPPS.invoke('REFRESH_DATA','invoice');
                 shortlink.innerText =bitlyLink; 
                 expiry.classList.add('active');  
+                
             }
         }
 
@@ -143,16 +156,17 @@ window.onload=function(){
             if(String(newBitlyLink).includes("bit.ly")){
                 bitlyLink =newBitlyLink;
                 invoice= await updateBitlyCustomerField(newBitlyLink);   
+                rePopulateData();
             }
             else{
                 
                 let msg=''
-                msg +='<div id="warning">'+newBitlyLink+'</div>'
+                msg +='<div id="warning">&nbsp;<span class="jsHTML"><img src="./assets/importantnote.svg" class="jsimport">&nbsp;'+newBitlyLink+'</span></div>'
                 popup.innerHTML=msg;
                 round.classList.remove('active');
-                ZFAPPS.invoke('RESIZE', { width: '535px', height: '310px' });
+                ZFAPPS.invoke('RESIZE', { width: '535px', height: '370px' });
             }
-            rePopulateData();
+            
             
         }
 
