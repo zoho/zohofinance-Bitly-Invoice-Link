@@ -39,65 +39,20 @@ p{
     width: 500px;;
 }
 
-input {
+input{
     border: 1px solid var(--border-color);
     border-radius: 2px;
     padding: 3px 5px;
     outline: none;
 }
 
-/* ID */
-
-#blocker.active{
-    visibility: hidden;
-
-}
-
-#closebutton{
-
-    position: absolute;
-    left: 475px;
-    width: 24px;
-    height: 24px;
-    background-color: #EFF2F9;
-    border: none;
-    color: #748194;
-    border-radius: 5px;
-    top: 30px;
-    cursor: pointer;
-}
-
-#generator{
-  
-    position: relative;
-    width: 100%;
-    height: 100%;
-    top: 100%;
-    box-sizing: border-box;
-}
-
-#generator.active{
-    visibility: hidden;
-}
-
-#lable{
-    padding-right: 20px;
-    margin-bottom: 10px;
-    font-weight: 400;
-    margin-top: 3px;
-}
-
-#star{
-    color: red;
-} 
-
 input[type="date"]::-webkit-calendar-picker-indicator {
     position: absolute;
     width: 250px;
     display: block;
-    opacity: 0;
-    
+    opacity: 0;   
 }
+
 input[type='date']:hover{
     border: var(--color-focussed) 1px solid;
 }
@@ -112,16 +67,28 @@ input::-webkit-datetime-edit-fields-wrapper {
     left: 20px;
 }
 
+/* ID */
+
+#closebutton{
+    position: absolute;
+    left: 475px;
+    width: 24px;
+    height: 24px;
+    background-color: #EFF2F9;
+    border: none;
+    color: #748194;
+    border-radius: 5px;
+    top: 30px;
+    cursor: pointer;
+}
+
 #expiry{
     border-radius:7px;
     width:250px;
     height: 30px;
     margin-bottom: 7px;
-    background:url(../assets/cal.svg);  
+    background:url(../assets/cal.svg) no-repeat 5% 52%;  
     background-size: 20px;
-    background-repeat: no-repeat;
-    background-position: 5% 52%;
-   
 }
 
 #expiry.active{
@@ -132,16 +99,8 @@ input::-webkit-datetime-edit-fields-wrapper {
     border-color: #EDEDF2;
 }
 
-#info{
-    font-size: 11px; 
-    margin-bottom: 20px;
-    color: #666666;
-
-}
-
 #line.active{
     visibility: hidden;
-
 }
 
 #generate.active{
@@ -163,22 +122,14 @@ input::-webkit-datetime-edit-fields-wrapper {
     width: 100%;
     height: 100%;
     top:100%;
-    box-sizing: border-box;
-    
+    box-sizing: border-box;   
 }
   
 #Link.active{
     top: 245px;
-
 }
 
-#Link.hide{
-    visibility: hidden;
-
-} 
-
 #dialog{
-
     border: 1px solid #F8EACE;
     background-color:var(--bg-dialog);
     border-radius: 10px; 
@@ -207,17 +158,12 @@ input::-webkit-datetime-edit-fields-wrapper {
     border-style: solid;
     z-index: 1;
     width: 0;
-
 }
   
 #dialog.active{
+    
     visibility: visible;
 
-}
-
-#dialogtxt{
-    position: relative;
-    top: -4px;
 }
 
 #dialog-confirm{
@@ -227,16 +173,15 @@ input::-webkit-datetime-edit-fields-wrapper {
     border-radius: 5px;
     margin-left: 0px;
 }
-
 #dialog-close{
-    border: none;
-    background-color: var(--bg-dialog);
+
+    background-color: inherit;
     color: var(--color-normal);
     padding: 2px;
     margin-left: -4px;
 }
  
-#bitly.active{
+#bitly.hide{
     visibility: hidden;
 }
 
@@ -249,7 +194,6 @@ input::-webkit-datetime-edit-fields-wrapper {
     background-color:#F8F8FA;
     margin-top: 20px;
     border: 1px solid  #EDEDF2;
-
 }
 
 #bitly-link {
@@ -258,7 +202,6 @@ input::-webkit-datetime-edit-fields-wrapper {
     line-height: 1.692;
     font-weight: 400;
     top:7px;
-
 }
 
 #copy{
@@ -268,11 +211,10 @@ input::-webkit-datetime-edit-fields-wrapper {
     width: 85px;
     height: 38px;
     padding: 0px;
-
 }
 
 #warning{
-    position: relative;
+    position: absolute;
     left: -20px;
     border: 1px solid var(--bg-dialog);
     background-color: var(--bg-dialog);
@@ -281,10 +223,47 @@ input::-webkit-datetime-edit-fields-wrapper {
     width: 513px;
     padding: 11px;
     margin-top: -15px;
+    visibility: hidden;
+}
+#warning.active{
+    visibility: visible;
+    position: relative;
+ 
 }
 
-
 /* Class  */
+
+.generator{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    box-sizing: border-box;
+}
+
+.label{
+    padding-right: 20px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.heading:after{
+    content: '*';
+    color: red;
+}
+
+.info{
+    font-size: 11px; 
+    margin-bottom: 20px;
+    color: #666666;
+}
+
+.dialogtxt{
+
+    position: relative;
+    top: -4px;
+}
 
 .round.active{
 
@@ -293,16 +272,11 @@ input::-webkit-datetime-edit-fields-wrapper {
     border-radius: 55%;
     border: dotted;
     display: inline-block;
-    animation-name: rotate;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation: rotate 3s linear infinite;
     color: var(--color-high);
     position: relative;
-    top: 0px;
-  
+    top: 0px;  
 }
-
 @keyframes rotate{
     from{ transform: rotate(-360deg); }
     to{ transform: rotate(360deg); }
@@ -330,7 +304,7 @@ input::-webkit-datetime-edit-fields-wrapper {
 .sharablelink{
     font-size: 15px;
     font-weight: 500;
-    padding: 0%;
+    padding: 0;
     margin-left: 8px;
 }
 
@@ -344,30 +318,23 @@ input::-webkit-datetime-edit-fields-wrapper {
     display: inline-block;
     color: var(--color-high);
     border: none;
-    color: var(--color-high);
 }
   
 .button:active {
     transform: scale(0.97);
 }
-    
 
-  
-hr.line{
+.line{
     border: 0.1px solid var(--border-color1);
-    padding: 0%;
-    margin-bottom: 15px;
-    margin-left:-18px;
-    margin-right: -12px;
+    padding: 0;
+    margin: 0px -12px 15px -18px;
     visibility: visible;
 }
 
-.linkline{
+.link-line{
     border: 0.1px solid var(--border-color1);
-    padding: 0%;
-    margin-bottom: 15px;
-    margin-right: 34px;
-    margin-top: 10px;
+    padding: 0;
+    margin: 10px 34px 15px 0px;
 
 }
 
@@ -379,41 +346,41 @@ hr.line{
 
 /* SVG IMAGES */
 
-.jsimport{
+.importantsvg{
     width: 18px;
     position: relative;
     top: 3px;
 }
-#infosvg{
+.infosvg{
     width: 13px; 
     position: relative; 
     top: 3px;
 }
 
-#share_Linksvg{
+.share_Linksvg{
     width: 17px;
     position: relative;
     top: 1px;
 }
-#regeneratesvg{
+.regeneratesvg{
     position: relative;
     top: 3px;
     width: 15px;
 }
-#importantnotesvg{
+.importantnotesvg{
     width: 18px;
     position: relative;
     top: 3px;
    
 }
-#copyfont{
+.copyfontsvg{
     width: 14px;
     align-items: center;
     position: relative;
     top: 1px;
 }
 
-#closesvg{
+.closesvg{
     width: 12px;
     position: relative;
     top: 1px;

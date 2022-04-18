@@ -10,57 +10,60 @@
 
 	<body>
 
-<!-- Generate Module for date click-->
+		<!-- Generate Module for date click-->
 
-		<div id="blocker" class="d-none faded">
-			<button id="closebutton" ><img src="./assets/close.svg" id="closesvg"></button>
+		<div>
+			<button id="closebutton" ><img src="./assets/close.svg" class="closesvg"></button>
 			<h4>Bitly Invoice Link</h4>
-			<hr class="line" id="startline"> </hr>
-			<div id="popup"></div>
+			<hr class="line">
+			<div id="warning">&nbsp;
+					<img src="./assets/importantnote.svg" class="importantsvg">
+					<span class="jsHTML"></span>
+			</div>
 			<p >Generate short links of your Invoice URL by Bitly and share with your customers and they can view, print or download it.</p>			
-			<div id="generator">
+			<div class="generator">
 				<div>
-					<div id="lable">
-						<label id="heading" >Link Expiration Date</label><span id="star">*</span>
+					<div class="label">
+						<label class="heading" >Link Expiration Date</label>
 					</div>
 					<div>
-						<input id="expiry"  type="date"  class="num-field" placeholder="Select Date" >
+						<input id="expiry"  type="date"  placeholder="Select Date" >
 					</div>
-					<img src="./assets/Info.svg" id="infosvg" >&nbsp;&nbsp;<span id="info" >By default, the link is set to expire 90 days from today.</span>
-					<br><br>
+					<img src="./assets/Info.svg" class="infosvg" >&nbsp;&nbsp;<span class="info" >By default, the link is set to expire 90 days from today.</span>
+					<br>
+					<br>
 				</div>
-				<hr class="line" id="line"></hr>
+				<hr class="line" id="line">
 				<button id="generate" class="button" ><span class="round"></span>&nbsp;Generate Link</button>
 			</div>
-			
 		</div>
 
 
-<!-- Link appear module  -->
+		<!-- Link appear module  -->
 		<div id="Link">
-			<hr class="linkline"></hr>
+			<hr class="link-line"></hr>
 			<div>
-				<button class="circle"><img src="./assets/Share_Link.svg" id="share_Linksvg"></button>
+				<button class="circle"><img src="./assets/Share_Link.svg" class="share_Linksvg"></button>
 				<span class="sharablelink" > Sharable Link </span>
-				<button  class="button regenerate" id="regenerate" >Regenerate Link <img src="./assets/Regenerate.svg" id="regeneratesvg"></button>
+				<button  class="button regenerate" id="regenerate" >Regenerate Link <img src="./assets/Regenerate.svg" class="regeneratesvg"></button>
 			</div>
 
 			<div >
-				<dialog open id="dialog"><span id="dialogtxt"><img src="./assets/importantnote.svg" id="importantnotesvg">&nbsp;&nbsp;When you regenerate the link, the current link will be replaced with new link. <br>
+				<dialog open id="dialog"><span class="dialogtxt"><img src="./assets/importantnote.svg" class="importantnotesvg">&nbsp;&nbsp;When you regenerate the link, the current link will be replaced with new link. <br></span>
 					<button id="dialog-confirm"class="button">Confirm</button>
-					<button id="dialog-close" class="button">Cancel</button></span>
+					<button id="dialog-close" class="button">Cancel</button>
 				</dialog>
 			</div>
 
 			<div id="bitly">
 				<div id="content">
 					<span id="bitly-link"></span>
-					<button id="copy" class="button"><img src="./assets/copy.svg"id="copyfont">&nbsp;</i>Copy</button>
+					<button id="copy" class="button"><img src="./assets/copy.svg"class="copyfontsvg">&nbsp;</i>Copy</button>
 				</div>	
 			</div>
 		</div>
 
-<!-- Script for zfapps and extension-->
+		<!-- Script for zfapps and extension-->
 
 		<script src="https://js.zohostatic.com/zohofinance/v1/zf_sdk.js"></script> 
 		<script src="./js/extension.js" charset="utf-8"></script>
