@@ -26,5 +26,6 @@ To make this widget work in Development mode, you need to create custom field an
 * Clone Repository
 * Run `npm install` 
 * Run `zet run` (To run your application in https://localhost:5000)
-* Bitly-Invoice-Link
+* Enable Developement mode in books app.
+* Now, In Invoice Details Page you have custom button called `Bitly-Invoice-Link`. Using it you can create the bitly-short-link.
 
