@@ -10,7 +10,9 @@
         "location": "invoice.details.button",
         "name": "Bitly Invoice Link",
         "url": "/app/widget.html",
-        "widget_type":"modal"
+        "widget_type":"modal",
+        "allowed_features": ["clipboard-read","clipboard-write"] 
+
       }
     ]
   },
