@@ -6,6 +6,26 @@
 		<title>Shorten Link with Bitly</title>
 		<!-- CSS Link -->
 		<link rel="stylesheet" href="./css/main.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+		<!-- Essentail JS2 for Vue  (All components Styles) -->
+
+		<link href="https://cdn.syncfusion.com/ej2/20.1.58/material.css" rel="stylesheet" type="text/css"/>
+
+		<!-- Vue library file-->
+
+		<script
+		  src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"
+		  type="text/javascript"
+		></script>
+		<!-- Essential JS 2 for Vue  global script -->
+
+		<script
+		  src="https://cdn.syncfusion.com/ej2/20.1.58/ej2-vue-es5/dist/ej2-vue.min.js"
+		  type="text/javascript"
+		></script>
+		
 	</head>
 
 	<body>
@@ -17,29 +37,87 @@
 			<h4>Bitly Invoice Link</h4>
 			<hr class="line">
 			<div id="warning">&nbsp;
-					<img src="./assets/importantnote.svg" class="importantsvg">
-					<span class="jsHTML"></span>
+				<img src="./assets/importantnote.svg" class="importantsvg">
+				<span class="jsHTML"></span>
 			</div>
 			<p >Generate short links of your Invoice URL by Bitly and share with your customers and they can view, print or download it.</p>			
 			<div class="generator">
 				<div>
 					<div class="label">
-						<label class="heading" >Link Expiration Date</label>
+						<label class="heading" >Link Expiration Date</label><br>	   
+						<div id="radio">
+							<button class="expiry-date" id="firsthalf">15 Days</button>
+							<button class="expiry-date" id="secondhalf">30 Days</button>
+							<button class="expiry-date" id="thirdhalf">45 Days</button>
+							<button class="expiry-date" id="fourthhalf">60 Days</button>
+							<button class="expiry-date" id="fifthhalf">Custom</button>
+							
+						</div>
 					</div>
-					<div>
-						<input id="expiry"  type="date"  placeholder="Select Date" >
+					<div id="custom-option">
+						<div id="app">
+							<div class="datepicker">
+								<span class="datepicker-flex">
+									<ejs-datepicker label="dd-MMM-yy" :placeholder="watermark" :min="minDate" :max="maxDate"  id="vue-datepicker" @change="preview()" v-model="data"></ejs-datepicker>
+							    </span>
+							</div>
+						</div>
+						<script>
+							new Vue({
+							el: '#app',
+							data()
+							{
+						
+								let today = new Date().toISOString().slice(0, 10);
+								let after90 = new Date();
+								after90.setDate(parseInt(after90.getDate()) + 90);
+								after90 = after90.toISOString().slice(0, 10);
+								return {
+									watermark: "Choose a date",
+									minDate: today,
+									maxDate: after90,
+									data:''
+									}
+								},
+								methods:{
+									preview(){
+										let pre = document.getElementById('content-expiry-value');
+										if(this.data){
+											pre.innerText = this.data.toISOString().slice(0,10);
+											ZFAPPS.invoke('RESIZE', { width: '526px', height: '420px' })
+											}
+										else{
+											pre.innerText='';
+											ZFAPPS.invoke('RESIZE', { width: '526px', height: '420px' })
+										}
+										
+									}
+								}
+						    })
+						</script>
+						<div> 
+							<img src="./assets/Info.svg" class="infosvg" >&nbsp;&nbsp;<span class="info" >You can set link to expire max of 90 days from today.</span>
+						</div>
 					</div>
-					<img src="./assets/Info.svg" class="infosvg" >&nbsp;&nbsp;<span class="info" >By default, the link is set to expire 90 days from today.</span>
-					<br>
-					<br>
 				</div>
-				<hr class="line" id="line">
+				<br>
+				<br>
+
+				<div id="expiry-date-space">
+					<span id="content-expiry-date">Link Expiration on:</span>&nbsp;&nbsp;<span id="content-expiry-value"></span>
+				</div>
+				
+					
+				<!-- <input id="expiry"  type="date"  placeholder="Select Date" > -->
+				<br>
 				<button id="generate" class="button" ><span class="round"></span>&nbsp;Generate Link</button>
 			</div>
+
 		</div>
 
 
 		<!-- Link appear module  -->
+		
 		<div id="Link">
 			<hr class="link-line"></hr>
 			<div>
@@ -67,6 +145,7 @@
 
 		<script src="https://js.zohostatic.com/zohofinance/v1/zf_sdk.js"></script> 
 		<script src="./js/extension.js" charset="utf-8"></script>
+
 
 	</body>
 </html>

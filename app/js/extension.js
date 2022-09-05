@@ -1,6 +1,6 @@
 window.onload=function(){
     ZFAPPS.extension.init().then( async() => {
-        ZFAPPS.invoke('RESIZE', { width: '526px', height: '318px' });
+        ZFAPPS.invoke('RESIZE', { width: '526px', height: '350px' });
 
         // Data
 
@@ -10,7 +10,8 @@ window.onload=function(){
 
         // Config
 
-        const fieldName = 'cf__u0q6k_bitly_invoice_link';
+        const fieldName = 'cf__uvrmc_bitly_invoice_link';
+        const expiryfieldName = 'cf__uvrmc_bitly_link_expiry_at';
         const booksConnection = 'zohobooksbitly';
         const bitlyConnection = 'zbbitly';
         const booksAPIPrefix = `https://books.zoho${ organization.data_center_extension || '.com' }/api/v3`;
@@ -27,18 +28,28 @@ window.onload=function(){
         const dialog = document.querySelector('#dialog');
         const confirm = document.querySelector('#dialog-confirm');
         const cancel = document.querySelector('#dialog-close');
-        const expiry = document.querySelector('#expiry');
         const shortlink = document.querySelector('#bitly-link');
         const round = document.querySelector('.round');
         const copy = document.querySelector('#copy');
-        const line = document.querySelector('#line');
         const closebutton = document.querySelector('#closebutton');
         const warning = document.querySelector('#warning');
+        const Button15 = document.querySelector('#firsthalf');
+        const Button30 = document.querySelector('#secondhalf');
+        const Button45 = document.querySelector('#thirdhalf');
+        const Button60 = document .querySelector("#fourthhalf");
+        const custom = document.querySelector('#fifthhalf');
+        const radio = document.querySelector('#radio');
+        const expiry_date_value = document.querySelector('#content-expiry-value')
+        const vue_datepicker = document.querySelector('#vue-datepicker')
+        const custom_option = document.querySelector('#custom-option')
+
 
         // Getting the bitlyLink CustomField value
         
         let targetCF = (invoice?.custom_fields || []).find((field) => field.placeholder === fieldName);
+        let targetCFE = (invoice?.custom_fields || []).find((fields)=> fields.placeholder === expiryfieldName);
 
+  
         
         //close Button
         
@@ -48,8 +59,93 @@ window.onload=function(){
 
         closebutton.addEventListener('click', close)
 
+        $(document).ready(function() {
+            $('.e-date-icon').click(function (){
+                let value = vue_datepicker.getAttribute('aria-activedescendant')
+                if(value != 'null'){
+                    ZFAPPS.invoke('RESIZE', { width: '526px', height: '610px' });
+                    Link.classList.add('hide');
+                }
+                else{
+                    ZFAPPS.invoke('RESIZE', { width: '526px', height: '420px' })
+                    Link.classList.remove('hide');
+                }
+
+            }) 
+        })
+
         // Listner for generate Button
-           
+
+        Button15.addEventListener('click',() =>{
+            Button15.classList.add('active');
+            Button30.classList.remove('active');
+            Button45.classList.remove('active');
+            Button60.classList.remove('active');
+            custom.classList.remove('active');
+            let after15 = new Date();
+            after15.setDate(parseInt(after15.getDate()) + 15);
+            after15 = after15.toISOString().slice(0, 10);
+            expiry_date_value.innerText = after15
+            custom_option.classList.add('active');
+            ZFAPPS.invoke('RESIZE', { width: '526px', height: '350px' });
+            
+
+        })
+        Button30.addEventListener('click',() =>{
+            Button15.classList.remove('active');
+            Button30.classList.add('active');
+            Button45.classList.remove('active');
+            Button60.classList.remove('active');
+            custom.classList.remove('active');
+            let after30 = new Date();
+            after30.setDate(parseInt(after30.getDate()) + 30);
+            after30 = after30.toISOString().slice(0, 10);
+            expiry_date_value.innerText = after30
+            custom_option.classList.add('active');
+            ZFAPPS.invoke('RESIZE', { width: '526px', height: '350px' });
+
+        })
+        Button45.addEventListener('click',() =>{
+            Button15.classList.remove('active');
+            Button30.classList.remove('active');
+            Button45.classList.add('active');
+            Button60.classList.remove('active');
+            custom.classList.remove('active');
+            let after45 = new Date();
+            after45.setDate(parseInt(after45.getDate()) + 45);
+            after45 = after45.toISOString().slice(0, 10);
+            expiry_date_value.innerText = after45
+            custom_option.classList.add('active');
+            ZFAPPS.invoke('RESIZE', { width: '526px', height: '350px' });
+
+        })
+        Button60.addEventListener('click',() =>{
+            Button15.classList.remove('active');
+            Button30.classList.remove('active');
+            Button45.classList.remove('active');
+            Button60.classList.add('active');
+            custom.classList.remove('active');
+            let after60 = new Date();
+            after60.setDate(parseInt(after60.getDate()) + 60);
+            after60 = after60.toISOString().slice(0, 10);
+            expiry_date_value.innerText = after60
+            custom_option.classList.add('active');
+            ZFAPPS.invoke('RESIZE', { width: '526px', height: '350px' });
+
+        })
+        custom.addEventListener('click',()=>{
+            Button15.classList.remove('active');
+            Button30.classList.remove('active');
+            Button45.classList.remove('active');
+            Button60.classList.remove('active');
+            custom.classList.add('active');
+            expiry_date_value.innerText = ''
+            custom_option.classList.remove('active');
+            ZFAPPS.invoke('RESIZE', { width: '526px', height: '420px' });
+        })
+
+
+
         generate.addEventListener('click',() => {
 
             if (invoice?.status == 'sent' || invoice?.status == 'overdue' || invoice?.status == 'paid') {
@@ -60,7 +156,8 @@ window.onload=function(){
             else { 
                 warning.classList.add('active');
                 popup.innerText = "You can generate an invoice link only if it is already sent or is marked as sent.";
-                ZFAPPS.invoke('RESIZE', { width: '535px', height: '370px' });   
+                ZFAPPS.invoke('RESIZE', { width: '535px', height: '410px' });   
+
             }
 
         });
@@ -78,13 +175,12 @@ window.onload=function(){
         //dialog-confirm Button
 
         confirm.addEventListener('click', () => {
-
+            Button15.classList.remove('active');
             Link.classList.remove('active');
             dialog.classList.remove('active');
             generate.classList.remove('active');
-            line.classList.remove('active');
-            expiry.classList.remove('active'); 
-            ZFAPPS.invoke('RESIZE', { width: '526px', height: '318px' });
+            radio.classList.remove('active');
+            ZFAPPS.invoke('RESIZE', { width: '526px', height: '350px' });
 
         });
 
@@ -120,31 +216,30 @@ window.onload=function(){
         //set limit for date
 
         const expiryDateupdate = () => {
-
-            let today = new Date().toISOString().slice(0, 10);
-            let after90 = new Date();
-            after90.setDate(parseInt(after90.getDate()) + 90);
-            after90 = after90.toISOString().slice(0, 10);
-            expiry.setAttribute('min', today);
-            expiry.setAttribute('max', after90);
-            expiry.value = after90;   
-
+            Button15.classList.add('active');
+            let after15 = new Date();
+            after15.setDate(parseInt(after15.getDate()) + 15);
+            after15 = after15.toISOString().slice(0, 10);
+            expiry_date_value.innerText = after15
+            custom_option.classList.add('active');
         }
 
         //call when program is start to show if bilty is already present 2 module is display 
 
-        const populateData = (bitlyLink) => {
+        const populateData = (bitlyLink,due_date) => {
                 
             if(bitlyLink) {
                
                 ZFAPPS.invoke('RESIZE', { width: '526px', height: '378px' });
                 Link.classList.add('active');
+                radio.classList.add('active');
                 round.classList.remove('active');
                 generate.classList.add('active');
-                line.classList.add('active');
                 bitly.classList.remove('hide');
+                custom_option.classList.add('active');
                 shortlink.innerText = bitlyLink; 
-                expiry.classList.add('active');  
+                expiry_date_value.innerText = due_date;
+                Link.classList.remove('hide');
                 ZFAPPS.invoke('REFRESH_DATA','invoice');
                 
             }
@@ -159,14 +254,16 @@ window.onload=function(){
 
             if (String(newBitlyLink).includes("bit.ly")) { 
                 await updateBitlyCustomerField(newBitlyLink);   
-                populateData(newBitlyLink);
+                populateData(newBitlyLink,expiry_date_value.innerText);
             }
             else {
                 warning.classList.add('active');
+                generate.classList.add('active');
                 let msg = newBitlyLink || invoiceLink?.message;
                 popup.innerText=msg;
                 round.classList.remove('active');
-                ZFAPPS.invoke('RESIZE', { width: '535px', height: '370px' });
+                ZFAPPS.invoke('RESIZE', { width: '535px', height: '420px' });
+
             }
             
             
@@ -176,7 +273,7 @@ window.onload=function(){
 
         const generateInvoiceLink = async() => {
 
-            let expiryDate = expiry.value;
+            let expiryDate = expiry_date_value.innerText;
             let invoiceLinkOptions = {
             url:  booksAPIPrefix + '/share/paymentlink',
             method: "GET",
@@ -272,6 +369,9 @@ window.onload=function(){
                     custom_fields: [{
                         api_name: fieldName,
                         value: link
+                    },{
+                        api_name: expiryfieldName,
+                        value: expiry_date_value.innerText
                     }]
                     },
                 }]
@@ -295,6 +395,6 @@ window.onload=function(){
         }
 
         expiryDateupdate();
-        populateData(targetCF?.value); // if link is present it will shown.  
+        populateData(targetCF?.value,targetCFE?.value); // if link is present it will shown.  
     });
 }
